@@ -2,7 +2,11 @@
 <% unless @devices.blank? %>
 	<ol>
 		<% @devices.each do |d| %>
-			<li><%= d.id %></li>
+			<li>
+				<%= link_to d do %>
+					<%= d.name %> <em>(<%= d.id %>)</em>
+				<% end %>
+			</li>
 		<% end %>
 	</ol>
 <% end %>

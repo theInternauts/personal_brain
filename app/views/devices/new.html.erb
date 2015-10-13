@@ -1,0 +1,19 @@
+<h1>Add new device</h1>
+<%= form_for @device, url: {action: "create"} do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= submit_tag("Create") %>
+<% end %>
+<hr />
+<h2>Device List</h2>
+<% unless @devices.blank? %>
+	<ol>
+		<% @devices.each do |d| %>
+			<li>
+				<%= link_to d do %>
+					<%= d.name %> <em>(<%= d.id %>)</em>
+				<% end %>
+			</li>
+		<% end %>
+	</ol>
+<% end %>
