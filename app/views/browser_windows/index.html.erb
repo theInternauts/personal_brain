@@ -1,0 +1,21 @@
+<h1>Window List</h1>
+<span>total: <%= @browser_windows.length %></span> | <%= link_to "create new window", new_device_browser_window_path(device_id: params[:device_id]) %>
+<% unless @browser_windows.blank? %>
+	<ol>
+		<% @browser_windows.each do |d| %>
+			<li>
+				<span>private?</span><%= check_box_tag(:private) %>
+				<%= link_to device_browser_window_path(d.device_id, d) do %>
+					<span>id: </span><em>(<%= d.id %>)</em>
+					<% unless d.browser_tabs.blank? %>
+						<ol>
+							<% d.browser_tabs.each do |tab| %>
+								<li><span>(<%= tab.id %>)</span><span><%= tab.title %></span></li>
+							<% end %>
+						</ul>
+					<% end %>
+				<% end %>
+			</li>
+		<% end %>
+	</ol>
+<% end %>
