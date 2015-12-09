@@ -18,3 +18,5 @@
 #ignore Sublime Text settings
 /*.sublime-project
 /*.sublime-workspace
+
+.DS_Store
