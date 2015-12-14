@@ -2,6 +2,12 @@
 <%= link_to '[Edit]', edit_device_path(@device) %>
 <hr />
 <h2><%= @device.name %> Details:</h2>
-<ul>
-	<li><em>(<%= @device.id %>)</em></li>
-</ul>
+
+<% windows = @device.browser_windows %>
+<% unless windows.blank? %>
+	<ol>
+		<% windows.sort.each do |bw| %>
+			<li><em>(<%= bw.id %>)</em> &mdash; <em><%= bw.private? %></li>
+		<% end %>
+	</ol>
+<% end %>

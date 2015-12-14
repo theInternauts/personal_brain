@@ -7,7 +7,7 @@
 <% tabs = @browser_window.browser_tabs %>
 <% unless tabs.blank? %>
 	<ol>
-		<% tabs.each do |tab| %>
+		<% tabs.sort.each do |tab| %>
 			<li><span>(<%= tab.id %>)</span><span><%= tab.title %></span></li>
 		<% end %>
 	</ul>

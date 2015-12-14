@@ -7,8 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+<nav>
+	<%= link_to 'home', root_url %>
+</nav>
+<article>
+	<%= yield %>
+</article>
 
 </body>
 </html>
