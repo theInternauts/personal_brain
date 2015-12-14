@@ -29,6 +29,9 @@ group :development, :test do
   gem 'json_spec', '~> 1.0.3'
   gem 'irake'
   gem 'ruby-prof'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-nav'
 	# Use debugger
 	# gem 'debugger'
 end
