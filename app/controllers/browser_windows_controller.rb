@@ -9,7 +9,7 @@ class BrowserWindowsController < ApplicationController
 
 	def new
 		@browser_window = BrowserWindow.new
-		@browser_windows = BrowserWindow.all
+		@browser_windows = BrowserWindow.all.group_by(&:device)		
 	end
 
 	def create

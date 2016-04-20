@@ -8,7 +8,10 @@
 </head>
 <body>
 <nav>
-	<%= link_to 'home', root_url %>
+	<ul>
+		<li><%= link_to 'home', root_path %></li>
+		<li><%= link_to 'devices', devices_path %></li>
+	</ul>
 </nav>
 <article>
 	<%= yield %>

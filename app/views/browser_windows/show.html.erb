@@ -2,7 +2,7 @@
 <span>private?</span><%= check_box_tag(:private) %>
 <%= link_to '[Edit]', edit_device_browser_window_path(:device_id => params[:device_id], :id => @browser_window.id) %>
 <hr />
-<h2><%= @browser_window.id %> Details:</h2>
+<h2>Window #<%= @browser_window.id %> Tabs:</h2>
 
 <% tabs = @browser_window.browser_tabs %>
 <% unless tabs.blank? %>

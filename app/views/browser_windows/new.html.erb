@@ -1,24 +1,34 @@
 <h1>Add new browser_window</h1>
 <%= form_for @browser_window, url: {action: "create"} do |f| %>
 	<%= f.check_box :private %>
-	<%= submit_tag("Create") %>
+	<%= submit_tag("Create Tab") %>
 <% end %>
 <hr />
 <h2>browser_window List</h2>
 <% unless @browser_windows.blank? %>
 	<ol>
-		<% @browser_windows.each do |d| %>
+		<% @browser_windows.each do |bw| %>
 			<li>
-				<span>private?</span><%= check_box_tag(:private) %>
-				<%= link_to device_browser_window_path(d.device_id, d) do %>
-					<span>id: </span><em>(<%= d.id %>)</em>
-					<% unless d.browser_tabs.blank? %>
-						<ol>
-							<% d.browser_tabs.each do |tab| %>
-								<li><span>(<%= tab.id %>)</span><span><%= tab.title %></span></li>
-							<% end %>
-						</ul>
-					<% end %>
+				<div>Device: <%= bw[0].name %></div>
+				<% unless bw[1].empty? %>
+					<ol>
+						<% bw[1].each do |win| %>
+							<li>
+								<span>private?</span><%= check_box_tag(:private) %>
+								<%= link_to device_browser_window_path(win.device_id, win) do %>
+									<span>window id: </span><em>(<%= win.id %>)</em>
+								<% end %>
+								<% unless win.browser_tabs.blank? %>
+									<div>&mdash; tabs &mdash;</div>
+									<ol>
+										<% win.browser_tabs.each do |tab| %>
+											<li><span>tab id: </span><em>(<%= tab.id %>)</em><span><%= tab.title %></span></li>
+										<% end %>
+									</ol>
+								<% end %>
+							</li>
+						<% end %>		
+					</ol>				
 				<% end %>
 			</li>
 		<% end %>

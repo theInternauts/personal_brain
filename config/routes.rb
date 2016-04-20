@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root 'devices#index'
 
   resources :devices do
-    resources :browser_windows
+    resources :browser_windows do
+      resources :browser_tabs
+    end
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
