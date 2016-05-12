@@ -16,7 +16,7 @@ class BrowserTabsController < ApplicationController
 		new_tab = BrowserTab.create(browser_tab_params)
 		window = BrowserWindow.find(params[:browser_window_id])
 		window.browser_tabs << new_tab
-		redirect_to device_browser_window_path(device_id: window.device_id, id: new_tab)
+		redirect_to device_browser_window_path(device_id: window.device_id, id: window)
 	end
 
 	def update
