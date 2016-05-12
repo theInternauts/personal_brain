@@ -7,8 +7,8 @@
 <% unless windows.blank? %>
 	<ol>
 		<% windows.sort.each do |bw| %>
-			<li><%= link_to device_browser_window_path(@device, bw.id) do %>
-					<em>(<%= bw.id %>)</em> &mdash; <em><%= bw.private? %>
+			<li><%= link_to device_browser_window_path(@device, bw.id), data: {'browser-window-id': bw.id} do %>
+					<em>(<%= bw.browser_tabs.count %>)</em> &mdash; <em><%= bw.private? %>
 				<% end %>
 			</li>
 		<% end %>

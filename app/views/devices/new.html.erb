@@ -10,8 +10,8 @@
 	<ol>
 		<% @devices.each do |d| %>
 			<li>
-				<%= link_to d do %>
-					<%= d.name %> <em>(<%= d.id %>)</em>
+				<%= link_to d, data: {'device-id': d.id} do %>
+					<%= d.name %> <em>(<%= d.browser_windows.count %>)</em>
 				<% end %>
 			</li>
 		<% end %>

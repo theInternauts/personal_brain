@@ -9,14 +9,14 @@
 	<ol>
 		<% @browser_windows.each do |bw| %>
 			<li>
-				<div>Device: <%= bw[0].name %></div>
+				<div data-device-id="<%= bw[0].id %>">Device: <%= bw[0].name %></div>
 				<% unless bw[1].empty? %>
 					<ol>
 						<% bw[1].each do |win| %>
 							<li>
 								<span>private?</span><%= check_box_tag(:private) %>
-								<%= link_to device_browser_window_path(win.device_id, win) do %>
-									<span>window id: </span><em>(<%= win.id %>)</em>
+								<%= link_to device_browser_window_path(win.device_id, win), data: {'browser-window-id': win.id} do %>
+									<span>window id: </span><em>(<%= win.id %>)</em><span>&mdash; tabs: </span><em>(<%= win.browser_tabs.count %>)</em>
 								<% end %>
 								<% unless win.browser_tabs.blank? %>
 									<div>&mdash; tabs &mdash;</div>

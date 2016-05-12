@@ -8,7 +8,10 @@
 <% unless tabs.blank? %>
 	<ol>
 		<% tabs.sort.each do |tab| %>
-			<li><span>(<%= tab.id %>)</span><span><%= tab.title %></span></li>
+			<li><%= link_to tab.url, data: {'browser-tab-id': tab.id}, target: :new do %>
+					<span>[<%= tab.title %>] (<%= tab.url %>)</span>
+				<% end %>
+			</li>
 		<% end %>
 	</ul>
 <% end %>
