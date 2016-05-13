@@ -21,8 +21,8 @@ class BrowserTabsController < ApplicationController
 
 	def update
 		browser_tab = BrowserTab.find(params[:id])
-		BrowserTab.update!(browser_tab_params)
-		redirect_to device_browser_tab_path(browser_tab.device_id, browser_tab)
+		BrowserTab.update(browser_tab, browser_tab_params)
+		redirect_to device_browser_window_path(browser_tab.device, browser_tab.browser_window)
 	end
 
 	def edit
