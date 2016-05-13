@@ -1,0 +1,12 @@
+<h1>Bookmarks</h1>
+<ol>
+	<% @bookmarks.each do |bm| %>
+		<li>
+			<%= link_to bm.url, data: {'bookmark-id': bm.id}, target: :new do %>
+				<span><%= bm.title %></span>
+			<% end %>
+			|
+			<%= link_to '[Edit]', edit_bookmark_path(bm) %>
+		</li>
+	<% end %>
+</ol>

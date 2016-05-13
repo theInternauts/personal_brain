@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       resources :browser_tabs
     end
   end
+
+  resources :bookmarks
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
