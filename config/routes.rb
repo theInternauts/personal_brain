@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :bookmarks
+  resources :tags
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
