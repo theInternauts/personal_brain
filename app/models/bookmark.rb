@@ -1,3 +1,4 @@
 class Bookmark < ActiveRecord::Base
-	include Taggable
+	validates :url, presence: true, uniqueness: { message: "This bookmark already exists." }
+	has_and_belongs_to_many :tags
 end

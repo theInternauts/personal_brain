@@ -1,0 +1,11 @@
+h1 Add new bookmark
+= form_tag bookmarks_path, authenticity_token: true, method: :post do |f|
+	= label_tag :title
+	= text_field :bookmark, :title
+	= label_tag :url
+	= text_field :bookmark, :url
+	= label_tag :tags
+	= text_field :bookmark, :tags, value: ''
+	= label_tag :private
+	= check_box_tag 'bookmark[private]', 1, :false
+	= submit_tag("Create")

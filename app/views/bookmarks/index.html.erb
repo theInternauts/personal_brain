@@ -2,11 +2,18 @@
 <ol>
 	<% @bookmarks.each do |bm| %>
 		<li>
-			<%= link_to bm.url, data: {'bookmark-id': bm.id}, target: :new do %>
-				<span><%= bm.title %></span>
-			<% end %>
-			|
-			<%= link_to '[Edit]', edit_bookmark_path(bm) %>
+			<div>
+				<%= link_to bm.url, data: {'bookmark-id': bm.id}, target: :new do %>
+					<span><%= bm.title %></span>
+				<% end %>
+				|
+				<%= link_to '[Edit]', edit_bookmark_path(bm) %>
+			<div>
+			<div>
+				<% bm.tags.each do |t| %>
+					<span><%= t.name %><% unless t === bm.tags.last %>, <% end %></span>
+				<% end %>
+			</div>
 		</li>
 	<% end %>
 </ol>
