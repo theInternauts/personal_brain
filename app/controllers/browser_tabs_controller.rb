@@ -1,5 +1,5 @@
 class BrowserTabsController < ApplicationController
-	def index
+  def index
 		@browser_tabs = BrowserTab.all
 	end
 
