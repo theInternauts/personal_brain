@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514071104) do
+ActiveRecord::Schema.define(version: 20160522065241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,16 @@ ActiveRecord::Schema.define(version: 20160514071104) do
     t.boolean  "private",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "comment"
   end
+
+  create_table "bookmarks_tags", id: false, force: true do |t|
+    t.integer "bookmark_id", null: false
+    t.integer "tag_id",      null: false
+  end
+
+  add_index "bookmarks_tags", ["bookmark_id"], name: "index_bookmarks_tags_on_bookmark_id", using: :btree
+  add_index "bookmarks_tags", ["tag_id"], name: "index_bookmarks_tags_on_tag_id", using: :btree
 
   create_table "browser_tabs", force: true do |t|
     t.string   "url"
@@ -49,15 +58,6 @@ ActiveRecord::Schema.define(version: 20160514071104) do
     t.datetime "updated_at", null: false
     t.string   "name"
   end
-
-  create_table "taggings", force: true do |t|
-    t.integer "tag_id"
-    t.integer "bookmark_id"
-    t.string  "type"
-  end
-
-  add_index "taggings", ["bookmark_id"], name: "index_taggings_on_bookmark_id", using: :btree
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string "name"
