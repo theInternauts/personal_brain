@@ -1,0 +1,10 @@
+<h1>Bookmark: <%= @bookmark.title %></h1>
+<h2>URL: <%= @bookmark.url %></h2>
+<hr />
+<ol>
+	<% unless @tags.empty? %>
+		<% @tags.each do |t| %>
+		<li><span><%= link_to t.name, tag_path(t) %></span></li>
+		<% end %>
+	<% end %>
+</ol>

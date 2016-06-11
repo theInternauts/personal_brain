@@ -18,7 +18,7 @@ class BookmarksController < ApplicationController
 
 	def show
 		@bookmark = Bookmark.find(params[:id])
-		@tags = @bookmark.tags.pluck(:name)
+		@tags = @bookmark.tags.sort
 	end
 
 	private
