@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :bookmarks
   resources :tags
+  get 'tags_search' => 'tags#search', as: :tags_search
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
