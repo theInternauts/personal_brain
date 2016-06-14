@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :bookmarks
+  get 'bookmarks_search' => 'bookmarks#search', as: :bookmarks_search
   resources :tags
   get 'tags_search' => 'tags#search', as: :tags_search
   # Example of regular route:

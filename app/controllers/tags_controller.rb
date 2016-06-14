@@ -33,7 +33,7 @@ class TagsController < ApplicationController
 
 	def search
 		# should move this functionality to run directly from the web server ahead of Rails (metal)
-		# - needs to accept a second param, exclusion tags fromt he result (becasue they've been selected/applied already)
+		# - needs to accept a second param, exclusion tags from the result (becasue they've been selected/applied already)
 		@tags = Tag.where("name LIKE ?", "%#{params[:q]}%")
 		respond_to do |format|
 			format.html {render :text => "search: #{params[:q]} => #{@tags.map(&:name)}", status: :ok}

@@ -20,6 +20,15 @@ class BookmarksController < ApplicationController
 		@bookmark = Bookmark.find(params[:id])
 		@tags = @bookmark.tags.sort
 	end
+	
+	def search
+		# should move this functionality to run directly from the web server ahead of Rails (metal)
+		@bookmarks = Bookmark.where("title LIKE ? OR url LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+		respond_to do |format|
+			format.html {render :text => "search: #{params[:q]} => #{@bookmarks.collect_concat {|b| [b.title, b.url]}}", status: :ok}
+			format.js {render :json => @bookmarks, status: :ok}
+		end
+	end
 
 	private
 		def bookmark_tab_params
