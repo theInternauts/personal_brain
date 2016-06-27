@@ -20,8 +20,8 @@ gem 'slim'
 
 gem 'unicorn'
 gem 'sanitize'
-gem "ember-rails"
-gem 'markio'
+gem 'ember-rails'
+gem 'bookmarks', :git => 'https://github.com/theInternauts/bookmarks.git', :branch => 'delicious-support'
 
 group :development, :test do
 	gem "rspec-rails", '~> 2.13.2'
