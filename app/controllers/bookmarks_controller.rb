@@ -9,10 +9,12 @@ class BookmarksController < ApplicationController
 
 	def create
 		bookmark = Bookmark.create(bookmark_tab_params)
-		# ['one', 'two', 'three', 'four', 'two', 'one', 'seven', 'six', 'eight']
 		unless bookmark.blank?
-			t = Tag.where(:name => ['one', 'two', 'three', 'four', 'two', 'one', 'seven', 'six', 'eight'])
-			bookmark.tags = params[:bookmark][:tags]
+			new_tags = params[:bookmark][:tags].split(',').collect do |item|
+				Tag.find_or_create_by(name: item)
+			end
+			bookmark.tags << new_tags
+			bookmark.save
 		end
 	end
 
@@ -20,7 +22,7 @@ class BookmarksController < ApplicationController
 		@bookmark = Bookmark.find(params[:id])
 		@tags = @bookmark.tags.sort
 	end
-	
+
 	def search
 		# should move this functionality to run directly from the web server ahead of Rails (metal)
 		@bookmarks = Bookmark.where("title LIKE ? OR url LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
