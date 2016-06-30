@@ -1,5 +1,6 @@
 <h1>Edit Window: <%= @browser_window.id %> <span>(on <%= @browser_window.device.name %>)</span></h1>
 <%= form_for @browser_window, url: {action: "update"}, method: 'PUT' do |f| %>
+	<%= f.label :private %>
 	<%= f.check_box :private %>
 	<%= submit_tag("Update") %>
 <% end %>

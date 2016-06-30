@@ -1,5 +1,5 @@
 h1 Add new browser_tab
-=form_for @browser_tab, url: {action: "create"}, method: 'PUT' do |f|
+=form_for @browser_tab, url: {action: "create"}, method: 'POST' do |f|
 	=f.label :title
 	=f.text_field :title
 	=f.label :url
@@ -16,7 +16,7 @@ h2 browser_tab List
 			li
 				div
 					span private?
-					=check_box_tag(:private)
+					=check_box_tag(:private, bt.private, bt.private)
 					| &mdash;
 					span =bt.title
 					| &mdash;

@@ -1,7 +1,8 @@
 <h1>Add new browser_window</h1>
 <%= form_for @browser_window, url: {action: "create"}, params: {url: 'http://www.google.com', title: 'Google, Yo!'} do |f| %>
+	<%= f.label :private %>
 	<%= f.check_box :private %>
-	<%= submit_tag("Create Tab") %>
+	<%= submit_tag("Create Window") %>
 <% end %>
 <hr />
 <h2>browser_window List</h2>
@@ -27,8 +28,8 @@
 									</ol>
 								<% end %>
 							</li>
-						<% end %>		
-					</ol>				
+						<% end %>
+					</ol>
 				<% end %>
 			</li>
 		<% end %>

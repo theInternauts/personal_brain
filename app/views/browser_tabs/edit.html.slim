@@ -16,7 +16,7 @@ h2 browser_tab List
 			li
 				div
 					span private?
-					=check_box_tag(:private)
+					=check_box_tag(:private, bt.private, bt.private)
 					| &mdash;
 					span =bt.title
 					| &mdash;
