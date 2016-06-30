@@ -1,8 +1,0 @@
-<h1>Tags</h1>
-<%= link_to "[new tag]", new_tag_path %>
-<hr />
-<ol>
-	<% @tags.each do |t| %>
-	<li><%= link_to t.name, tag_path(t) %> &mdash; <%= link_to '[edit]', edit_tag_path(t) %> &mdash; <%= link_to "[X]", tag_path(t), method: :delete %></li>
-	<% end %>
-</ol>
