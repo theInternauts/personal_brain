@@ -1,0 +1,14 @@
+h1 ="Bookmark: #{@bookmark.title}"
+h2 ="URL: #{@bookmark.url}"
+div ="Private: #{@bookmark.private}"
+span
+	| [
+	=link_to('edit bookmark', edit_bookmark_path)
+	| ]
+hr
+- unless @tags.empty?
+	h3 Tags
+	ol
+		- @tags.each do |t|
+			li
+				span =link_to(t.name, tag_path(t))
