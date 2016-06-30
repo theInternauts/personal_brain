@@ -5,6 +5,7 @@ class BookmarksController < ApplicationController
 
 	def new
 		@bookmark = Bookmark.new
+		@tags = []
 	end
 
 	def create
@@ -16,11 +17,24 @@ class BookmarksController < ApplicationController
 			bookmark.tags << new_tags
 			bookmark.save
 		end
+
+		redirect_to bookmark, notice: 'Bookmark was successfully created.'
 	end
 
 	def show
 		@bookmark = Bookmark.find(params[:id])
 		@tags = @bookmark.tags.sort
+	end
+
+	def edit
+		@bookmark = Bookmark.find(params[:id])
+		@tags = @bookmark.tags.sort
+	end
+
+	def update
+		bookmark = Bookmark.find(params[:id])
+		Bookmark.update(bookmark, bookmark_tab_params)
+		redirect_to bookmark_path(bookmark)
 	end
 
 	def search
