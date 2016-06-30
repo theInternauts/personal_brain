@@ -1,0 +1,20 @@
+h1 Bookmarks
+ol
+	- @bookmarks.each do |bm|
+		li
+			h3
+				=link_to bm.url, data: {'bookmark-id': bm.id}, target: :new do
+					span =bm.title
+				=raw("&mdash;")
+				=link_to '[Edit]', edit_bookmark_path(bm)
+			- unless bm.tags.empty?
+				div
+					span ="TAGS: "
+					- bm.tags.each do |t|
+						span =link_to t.name, tag_path(t)
+						- unless t === bm.tags.last
+							span =" | "
+			br
+			br
+
+
