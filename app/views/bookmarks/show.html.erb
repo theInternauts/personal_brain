@@ -1,8 +1,11 @@
 <h1>Bookmark: <%= @bookmark.title %></h1>
 <h2>URL: <%= @bookmark.url %></h2>
+<div>Private: <%= @bookmark.private %></div>
+<span>[<%= link_to 'edit bookmark', edit_bookmark_path %>]</span>
 <hr />
-<ol>
-	<% unless @tags.empty? %>
+<% unless @tags.empty? %>
+	<h3>Tags</h3>
+	<ol>
 		<% @tags.each do |t| %>
 		<li><span><%= link_to t.name, tag_path(t) %></span></li>
 		<% end %>
