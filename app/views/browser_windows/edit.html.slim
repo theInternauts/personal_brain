@@ -11,7 +11,13 @@ hr
 h2 Existing Windows
 - unless @browser_windows.blank?
 	ol
-		- @browser_windows.sort.each do |d|
+		- @browser_windows.group_by(&:device).each do |device|
 			li
-				=link_to device_browser_window_path(d.device_id, d), data: {'browser-window-id': d.id} do
-					em ="(#{d.browser_tabs.count})"
+				ol
+					- device[1].each do |b|
+						li
+							=link_to device_browser_window_path(b.device, b), data: {'browser-window-id': b.id} do
+								span ="Window id: (#{b.id})"
+								=" ---- "
+								em ="Tabs: (#{b.browser_tabs.count})"
+				br
