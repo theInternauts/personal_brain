@@ -1,0 +1,17 @@
+h1
+	span ="Edit Window: #{@browser_window.id} "
+	span ="(on #{@browser_window.device.name})"
+
+=form_for @browser_window, url: {action: "update"}, method: 'PUT' do |f|
+	=f.label :private
+	=f.check_box :private
+	=f.submit
+
+hr
+h2 Existing Windows
+- unless @browser_windows.blank?
+	ol
+		- @browser_windows.sort.each do |d|
+			li
+				=link_to device_browser_window_path(d.device_id, d), data: {'browser-window-id': d.id} do
+					em ="(#{d.browser_tabs.count})"

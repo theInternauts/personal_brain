@@ -9,7 +9,7 @@ class BrowserWindowsController < ApplicationController
 
 	def new
 		@browser_window = BrowserWindow.new
-		@browser_windows = BrowserWindow.all.group_by(&:device)		
+		@browser_windows = BrowserWindow.all.group_by(&:device)
 	end
 
 	def create
@@ -20,17 +20,17 @@ class BrowserWindowsController < ApplicationController
 
 	def update
 		browser_window = BrowserWindow.find(params[:id])
-		BrowserWindow.update!(browser_window_params)
+		browser_window.update!(browser_window_params)
 		redirect_to device_browser_window_path(browser_window.device_id, browser_window)
 	end
 
 	def edit
-		@browser_window = BrowserWindow.find(params[:id])	
-		@browser_windows = BrowserWindow.all	
+		@browser_window = BrowserWindow.find(params[:id])
+		@browser_windows = BrowserWindow.all
 	end
 
 	private
 		def browser_window_params
-      params.require(:browser_window).permit(:name)
+      params.require(:browser_window).permit(:name, :private)
     end
 end
