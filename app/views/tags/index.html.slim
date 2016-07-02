@@ -1,11 +1,15 @@
 h1 Tags
 =link_to "[new tag]", new_tag_path
 hr
-ol
-	- @tags.each do |t|
+= paginate @tags
+ul
+	- @tags.each_with_index do |t, index|
 		li
+			span =page_counter(@page, @per_page, index, 10)
 			=link_to t.name, tag_path(t)
-			| &mdash;
+			| &mdash;&mdash;&mdash;
 			=link_to '[edit]', edit_tag_path(t)
 			| &mdash;
 			=link_to "[X]", tag_path(t), method: :delete
+
+= paginate @tags

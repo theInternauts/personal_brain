@@ -22,6 +22,7 @@ gem 'unicorn'
 gem 'sanitize'
 gem 'ember-rails'
 gem 'bookmarks', :git => 'https://github.com/theInternauts/bookmarks.git', :branch => 'delicious-support'
+gem 'kaminari'
 
 group :development, :test do
 	gem "rspec-rails", '~> 2.13.2'
@@ -61,5 +62,5 @@ end
 
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
-	gem 'sdoc', '~> 0.4.0'	
+	gem 'sdoc', '~> 0.4.0'
 end

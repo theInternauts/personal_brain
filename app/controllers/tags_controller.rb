@@ -1,10 +1,12 @@
 class TagsController < ApplicationController
 	def index
-		@tags = Tag.all.order(:name)
+		@page = params[:page] ? params[:page] : 1
+		@per_page = Kaminari.config.default_per_page
+		@tags = Tag.all.order(:name).page @page
 	end
 
 	def new
-		@tag = Tag.new		
+		@tag = Tag.new
 	end
 
 	def create
