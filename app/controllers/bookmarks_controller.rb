@@ -1,6 +1,8 @@
 class BookmarksController < ApplicationController
 	def index
-		@bookmarks = Bookmark.all
+		@page = params[:page] ? params[:page] : 1
+		@per_page = Kaminari.config.default_per_page
+		@bookmarks = Bookmark.all.order(:created_at).page @page
 	end
 
 	def new

@@ -1,8 +1,10 @@
 h1 Bookmarks
-ol
-	- @bookmarks.each do |bm|
+= paginate @bookmarks
+ul
+	- @bookmarks.each_with_index do |bm, index|
 		li
-			h3
+			span =page_counter(@page, @per_page, index, 5)
+			h3 style="display:inline-block;"
 				=link_to bm.url, data: {'bookmark-id': bm.id}, target: :new do
 					span =bm.title
 				=raw("&mdash;")
@@ -17,4 +19,4 @@ ol
 			br
 			br
 
-
+= paginate @bookmarks
