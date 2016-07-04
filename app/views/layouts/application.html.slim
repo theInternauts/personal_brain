@@ -7,18 +7,14 @@ html
 	  =csrf_meta_tags
 
 	body
-		nav
-			- if signed_in?
-				div ="Signed in as: #{current_user.try(:email)} - "
-				div =button_to 'Sign out', sign_out_path, method: :delete
-			- else
-				div =link_to 'Sign in', sign_in_path
+		- if signed_in?
+			=render partial: '/layouts/main_nav'
+		- else
+			nav
+				ul
+					li =link_to 'home', root_path
+					li =link_to 'Sign in', sign_in_path
 
-			ul
-				li =link_to 'home', root_path
-				li =link_to 'devices', devices_path
-				li =link_to 'bookmarks', bookmarks_path
-				li =link_to 'tags', tags_path
 
 		#flash
 		  - flash.each do |key, value|

@@ -1,0 +1,9 @@
+nav
+	div ="Signed in as: #{current_user.try(:email)} - "
+	div =button_to 'Sign out', sign_out_path, method: :delete
+
+	ul
+		li =link_to 'home', root_path
+		li =link_to 'devices', devices_path
+		li =link_to 'bookmarks', bookmarks_path
+		li =link_to 'tags', tags_path
