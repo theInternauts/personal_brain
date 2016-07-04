@@ -6,13 +6,22 @@ html
 	  =javascript_include_tag 'application', 'data-turbolinks-track' => true
 	  =csrf_meta_tags
 
-body
-nav
-	ul
-		li =link_to 'home', root_path
-		li =link_to 'devices', devices_path
-		li =link_to 'bookmarks', bookmarks_path
-		li =link_to 'tags', tags_path
+	body
+		nav
+			- if signed_in?
+				div ="Signed in as: #{current_user.try(:email)} - "
+				div =button_to 'Sign out', sign_out_path, method: :delete
+			- else
+				div =link_to 'Sign in', sign_in_path
 
-article
-	=yield
+			ul
+				li =link_to 'home', root_path
+				li =link_to 'devices', devices_path
+				li =link_to 'bookmarks', bookmarks_path
+				li =link_to 'tags', tags_path
+
+		#flash
+		  - flash.each do |key, value|
+		    div class="flash #{key}" =value
+		article
+			=yield

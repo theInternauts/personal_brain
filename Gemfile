@@ -23,6 +23,8 @@ gem 'sanitize'
 gem 'ember-rails'
 gem 'bookmarks', :git => 'https://github.com/theInternauts/bookmarks.git', :branch => 'delicious-support'
 gem 'kaminari'
+gem 'clearance'
+# gem "administrate", "~> 0.2.2"
 
 group :development, :test do
 	gem "rspec-rails", '~> 2.13.2'
