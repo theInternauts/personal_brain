@@ -16,6 +16,10 @@ ul
 						span =link_to t.name, tag_path(t)
 						- unless t === bm.tags.last
 							span =" | "
+			- if bm.comment.present?
+				div
+					b Comment:
+				div =bm.comment
 			br
 			br
 

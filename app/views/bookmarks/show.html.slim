@@ -1,6 +1,8 @@
 h1 ="Bookmark: #{@bookmark.title}"
 h2 ="URL: #{@bookmark.url}"
 div ="Private: #{@bookmark.private}"
+- if @bookmark.comment.present?
+	div ="Comment: #{@bookmark.comment}"
 span
 	| [
 	=link_to('edit bookmark', edit_bookmark_path)
