@@ -25,12 +25,12 @@ class BookmarksController < ApplicationController
 
 	def show
 		@bookmark = Bookmark.find(params[:id])
-		@tags = @bookmark.tags.sort
+		@tags = @bookmark.tags
 	end
 
 	def edit
 		@bookmark = Bookmark.find(params[:id])
-		@tags = @bookmark.tags.sort
+		@tags = @bookmark.tags
 	end
 
 	def update
