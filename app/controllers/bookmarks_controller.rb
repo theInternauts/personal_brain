@@ -2,7 +2,7 @@ class BookmarksController < ApplicationController
 	def index
 		@page = params[:page] ? params[:page] : 1
 		@per_page = Kaminari.config.default_per_page
-		@bookmarks = Bookmark.all.order(:created_at).page @page
+		@bookmarks = current_user.bookmarks.page @page
 	end
 
 	def new
@@ -11,7 +11,7 @@ class BookmarksController < ApplicationController
 	end
 
 	def create
-		bookmark = Bookmark.create(bookmark_tab_params)
+		bookmark = Bookmark.create(bookmark_tab_params.merge({user: current_user}))
 		unless bookmark.blank?
 			new_tags = params[:bookmark][:tags].split(',').collect do |item|
 				Tag.find_or_create_by(name: item)
@@ -35,7 +35,7 @@ class BookmarksController < ApplicationController
 
 	def update
 		bookmark = Bookmark.find(params[:id])
-		Bookmark.update(bookmark, bookmark_tab_params)
+		Bookmark.update(bookmark, bookmark_tab_params.merge({user: current_user}))
 		redirect_to bookmark_path(bookmark)
 	end
 
