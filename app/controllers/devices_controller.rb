@@ -1,6 +1,6 @@
 class DevicesController < ApplicationController
 	def index
-		@devices = Device.all
+		@devices = current_user.devices
 	end
 
 	def show
@@ -9,23 +9,23 @@ class DevicesController < ApplicationController
 
 	def new
 		@device = Device.new
-		@devices = Device.all
+		@devices = current_user.devices
 	end
 
 	def create
-		Device.create(device_params)
+		device = Device.create(device_params.merge({user: current_user}))
 		redirect_to device
 	end
 
 	def update
 		device = Device.find(params[:id])
-		device.update!(device_params)
+		device.update!(device_params.merge({user: current_user}))
 		redirect_to device
 	end
 
 	def edit
-		@device = Device.find(params[:id])	
-		@devices = Device.all	
+		@device = Device.find(params[:id])
+		@devices = current_user.devices
 	end
 
 	private
