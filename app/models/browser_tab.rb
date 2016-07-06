@@ -1,6 +1,6 @@
 class BrowserTab < ActiveRecord::Base
-	
-	
-	belongs_to :browser_window
 	has_one :device, through: :browser_window
+	belongs_to :browser_window
+
+	delegate :owner, to: :browser_window
 end
