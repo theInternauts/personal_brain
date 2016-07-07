@@ -1,4 +1,6 @@
 class BookmarksController < ApplicationController
+	# before_filter send(:authorize, :is_owner?), only: [:show, :update, :delete, :edit]
+
 	def index
 		@page = params[:page] ? params[:page] : 1
 		@per_page = Kaminari.config.default_per_page
@@ -25,16 +27,19 @@ class BookmarksController < ApplicationController
 
 	def show
 		@bookmark = Bookmark.find(params[:id])
+		authorize @bookmark, :is_owner?
 		@tags = @bookmark.tags
 	end
 
 	def edit
 		@bookmark = Bookmark.find(params[:id])
+		authorize @bookmark, :is_owner?
 		@tags = @bookmark.tags
 	end
 
 	def update
 		bookmark = Bookmark.find(params[:id])
+		authorize bookmark, :is_owner?
 		Bookmark.update(bookmark, bookmark_tab_params.merge({user: current_user}))
 		redirect_to bookmark_path(bookmark)
 	end
