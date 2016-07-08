@@ -7,15 +7,15 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    user.present?
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    is_owner? && scope.where(:id => record.id).exists?
   end
 
   def create?
-    false
+    user.present?
   end
 
   def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    is_owner?
   end
 
   def edit?
@@ -31,7 +31,11 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    update?
+  end
+
+  def is_owner?
+    @user === @record.owner
   end
 
   def scope
