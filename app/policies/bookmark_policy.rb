@@ -6,14 +6,6 @@ class BookmarkPolicy < ApplicationPolicy
 		@bookmark = bookmark
 	end
 
-	def can_view?
-		@user === bookmark.owner
-	end
-
-	# def show?
-	# 	@user === bookmark.owner
-	# end
-
 	def is_owner?
 		@user === bookmark.owner
 	end
