@@ -1,0 +1,3 @@
+class BrowserWindowPolicy < ApplicationPolicy
+end
+
