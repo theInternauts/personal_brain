@@ -39,6 +39,10 @@ class ApplicationPolicy
     @user === @record.owner
   end
 
+  def search?
+    index?
+  end
+
   def scope
     Pundit.policy_scope!(user, record.class)
   end
