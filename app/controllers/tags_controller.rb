@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 		authorize Tag
 		@page = params[:page] ? params[:page] : 1
 		@per_page = Kaminari.config.default_per_page
-		@tags = Tag.all.order(:name).page @page
+		@tags = Tag.owned_by(current_user).page @page
 	end
 
 	def new
