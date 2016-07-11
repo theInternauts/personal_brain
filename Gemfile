@@ -26,6 +26,7 @@ gem 'kaminari'
 gem 'clearance'
 gem 'pundit'
 # gem "administrate", "~> 0.2.2"
+gem 'friendly_id'
 
 group :development, :test do
 	gem "rspec-rails", '~> 2.13.2'
