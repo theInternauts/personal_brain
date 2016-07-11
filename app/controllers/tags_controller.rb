@@ -18,12 +18,12 @@ class TagsController < ApplicationController
 	end
 
 	def edit
-		@tag = Tag.find(params[:id])
+		@tag = Tag.friendly.find(params[:id])
 		authorize @tag
 	end
 
 	def update
-		tag = Tag.find(params[:id])
+		tag = Tag.friendly.find(params[:id])
 		authorize tag
 		Tag.update(tag, tag_params)
 		redirect_to tags_path
@@ -35,7 +35,7 @@ class TagsController < ApplicationController
 	end
 
 	def show
-		@tag = Tag.find(params[:id])
+		@tag = Tag.friendly.find(params[:id])
 		authorize @tag
 	end
 
