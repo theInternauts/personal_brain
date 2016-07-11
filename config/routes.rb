@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bookmarks
+  resources :bookmarks, except: [:show, :index]
+  get 'bookmarks/:user' => 'bookmarks#index'
+  get 'bookmarks/:user/:id' => 'bookmarks#show'
   get 'bookmarks_search' => 'bookmarks#search', as: :bookmarks_search
   resources :tags
   get 'tags_search' => 'tags#search', as: :tags_search

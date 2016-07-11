@@ -5,7 +5,7 @@ class BookmarksController < ApplicationController
 		authorize Bookmark
 		@page = params[:page] ? params[:page] : 1
 		@per_page = Kaminari.config.default_per_page
-		@bookmarks = current_user.bookmarks.page @page
+		@bookmarks = Bookmark.owned_by(User.friendly.find(params[:user])).page @page
 	end
 
 	def new
