@@ -1,6 +1,6 @@
 class AddFieldsToUser < ActiveRecord::Migration
   def change
-  	add_column :users, :name, :string, null: :false
+  	add_column :users, :full_name, :string, null: :false
   	add_column :users, :username, :string, null: :false
   	add_column :users, :slug, :string, null: :false
 
