@@ -1,5 +1,5 @@
 nav
-	div ="Signed in as: #{current_user.try(:email)} - "
+	div ="Signed in as: #{current_user.try(:email)} - #{current_user.full_name} (#{current_user.username})"
 	div =button_to 'Sign out', sign_out_path, method: :delete
 
 	ul
