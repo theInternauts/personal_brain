@@ -8,14 +8,12 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
+
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "users#new", as: "sign_up"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root 'devices#index'
 
   resources :devices do
     resources :browser_windows do
@@ -23,11 +21,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bookmarks, except: [:show, :index]
+  resources :bookmarks, except: [:index, :search]
+  # get 'bookmarks/:user' => 'bookmarks#index', as: :bookmarks_user
+  # get 'bookmarks/:user/:id' => 'bookmarks#show', as: :bookmark_user
   get 'bookmarks' => 'bookmarks#index'
-  get 'bookmarks/:user' => 'bookmarks#index'
-  get 'bookmarks/:user/:id' => 'bookmarks#show'
   get 'bookmarks_search' => 'bookmarks#search', as: :bookmarks_search
+
   resources :tags
   get 'tags_search' => 'tags#search', as: :tags_search
   # Example of regular route:
@@ -78,4 +77,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  # You can have the root of your site routed with "root"
+  root 'devices#index'
+  get ':user' => 'bookmarks#index', as: :user_bookmarks
 end

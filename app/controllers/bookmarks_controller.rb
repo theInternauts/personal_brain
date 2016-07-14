@@ -1,10 +1,15 @@
 class BookmarksController < ApplicationController
 	def index
 		authorize Bookmark
+
 		@page = params[:page] ? params[:page] : 1
-		user = params[:user].present? ? params[:user] : current_user
+		unless params[:user].present?
+			redirect_to user_bookmarks_path(user: current_user, page: @page)
+			return
+		end
+
 		@per_page = Kaminari.config.default_per_page
-		@bookmarks = Bookmark.owned_by(User.friendly.find(user)).page @page
+		@bookmarks = Bookmark.owned_by(User.friendly.find(params[:user])).page @page
 	end
 
 	def new
