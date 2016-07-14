@@ -1,6 +1,4 @@
 class BookmarksController < ApplicationController
-	# before_filter send(:authorize, :is_owner?), only: [:show, :update, :delete, :edit]
-
 	def index
 		authorize Bookmark
 		@page = params[:page] ? params[:page] : 1
