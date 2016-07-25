@@ -1,0 +1,1 @@
+$('.js-search-results-container').html("<%= escape_javascript render(:partial => 'search/search', :handlers => [:slim], :formats => [:html], :locals => {results: @results, model_name: @model_name}) %>");
