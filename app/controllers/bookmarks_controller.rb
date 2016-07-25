@@ -20,7 +20,7 @@ class BookmarksController < ApplicationController
 
 	def create
 		authorize Bookmark
-		bookmark = Bookmark.create(bookmark_tab_params.merge({user: current_user}))
+		bookmark = Bookmark.create(bookmark_params.merge({user: current_user}))
 		unless bookmark.blank?
 			new_tags = params[:bookmark][:tags].split(',').collect do |item|
 				Tag.find_or_create_by(name: item)
@@ -47,7 +47,7 @@ class BookmarksController < ApplicationController
 	def update
 		bookmark = Bookmark.find(params[:id])
 		authorize bookmark
-		Bookmark.update(bookmark, bookmark_tab_params.merge({user: current_user}))
+		Bookmark.update(bookmark, bookmark_params.merge({user: current_user}))
 		redirect_to bookmark_path(bookmark)
 	end
 
@@ -63,7 +63,7 @@ class BookmarksController < ApplicationController
 	end
 
 	private
-		def bookmark_tab_params
+		def bookmark_params
 			params.require(:bookmark).permit(:url, :title, :private, :tags)
 		end
 end
