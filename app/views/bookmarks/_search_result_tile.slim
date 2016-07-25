@@ -1,3 +1,2 @@
 .search-result-tile
-	div =link_to result.title, result.url
-	div =link_to "[bookmark]", result
+	=render partial: 'bookmarks/bookmark_tile', locals: {bm: result}
