@@ -55,7 +55,7 @@ class BookmarksController < ApplicationController
 		# lock it down for now
 		authorize Bookmark
 		# should move this functionality to run directly from the web server ahead of Rails (metal)
-		@bookmarks = Bookmark.where("title LIKE ? OR url LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+		@bookmarks = Bookmark.where("title LIKE ? OR url LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%").limit(20)
 		respond_to do |format|
 			format.html {render :text => "search: #{params[:q]} => #{@bookmarks.collect_concat {|b| [b.title, b.url]}}", status: :ok}
 			format.js {render :json => @bookmarks, status: :ok}

@@ -1,7 +1,7 @@
 =form_tag({controller: "search", action: "search"}, method: "get", remote: :true, class: "search-form") do
 	=label_tag(:q, "Search: ")
-	=text_field_tag(:q, '', {id: :query_field, placeholder: 'enter keywords'})
-
+	=text_field_tag(:q, '', {id: :query_field, placeholder: 'enter keywords', class: 'js-multi-search-input'})
+	.js-multi-search-listing
 	= field_set_tag('Options', class: 'radio-set') do
 		b Search for:
 		=radio_button_tag(:type, "bookmarks", true)

@@ -11,12 +11,12 @@ class SearchController < ApplicationController
 		else
 			@results = 	case @model_name
 									when 'tags'
-										Tag.where("name LIKE ?", "%#{params[:q]}%")
+										Tag.where("name LIKE ?", "%#{params[:q]}%").limit(20)
 									when 'bookmarks'
-										@results = Bookmark.where("title LIKE ? OR url LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+										Bookmark.where("title LIKE ? OR url LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%").limit(20)
 									else
 										# default to bookmarks treatment
-										@results = Bookmark.where("title LIKE ? OR url LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+										Bookmark.where("title LIKE ? OR url LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%").limit(20)
 									end
 		end
 	end
