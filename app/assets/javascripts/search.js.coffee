@@ -22,7 +22,7 @@ BRAIN.Search ?=
 	      return false
 	    select: (event, ui) ->
 	      $(this).val(ui.item.title)
-	      $(".js-search-results-container").html('<div><a href="' + ui.item.url + '" target="_blank">' + ui.item.title + '</a></div>')
+	      $(".js-search-results-container").html('<div><a href="' + ui.item.url + '" target="_blank">' + ui.item.title + '</a> - <a href="bookmarks/' + ui.item.id + '" target="_blank">[view]</a></div>')
 	      return false
 
 	  a.autocomplete("instance")._renderItem = (ul, item) ->
