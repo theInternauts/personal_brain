@@ -1,31 +1,7 @@
 window.BRAIN ?= {}
 
 BRAIN.Search ?=
-	init: () ->
-		a = $('.js-multi-search-input').autocomplete
-	    source: (request, response) ->
-	      $.ajax
-	        url: "/bookmarks_search"
-	        data:
-	        	q: request['term']
-	        dataType: 'json'
-	        success: (data) ->
-	          data.unshift
-	            title: "Search for: '#{request['term']}'"
-	            url: ""
-	            value: request['term']
-	          response(data)
-	    appendTo: ".js-multi-search-listing"
-	    delay: 200
-	    focus: (event, ui) ->
-	      $(this).val(ui.item.title)
-	      return false
-	    select: (event, ui) ->
-	      $(this).val(ui.item.title)
-	      $(".js-search-results-container").html('<div><a href="' + ui.item.url + '" target="_blank">' + ui.item.title + '</a> - <a href="bookmarks/' + ui.item.id + '" target="_blank">[view]</a></div>')
-	      return false
-
-	  a.autocomplete("instance")._renderItem = (ul, item) ->
-	    $("<li>").append("<div>" + item.title + "<br>" + item.url + "</div>").appendTo(ul);
-    return
-
+	init: (formSelector='.js-search-form') ->
+		$(formSelector).on 'keyup', '.js-search-input', (evt) ->
+			$(this).submit()
+			return
