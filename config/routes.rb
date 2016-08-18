@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'bookmarks_search' => 'bookmarks#search', as: :bookmarks_search
 
   resources :tags
-  get 'tags_search' => 'tags#tags_search', as: :tags_search
+  get 'tags_search' => 'tags#search', as: :tags_search
 
   resources :search, only: [:index]
   get '/search/search' => 'search#search', as: :multi_search, :constraints => { :only_ajax => true }

@@ -42,14 +42,15 @@ class TagsController < ApplicationController
 	def search
 	end
 
-	def tags_search
+	def search
 		# lock it down for now
 		authorize Tag
 		# should move this functionality to run directly from the web server ahead of Rails (metal)
 		# - needs to accept a second param, exclusion tags from the result (becasue they've been selected/applied already)
 		@tags = Tag.where("name LIKE ?", "%#{params[:q]}%")
 		respond_to do |format|
-			format.html {render :text => "search: #{params[:q]} => #{@tags.map(&:name)}", status: :ok}
+			# format.html {render :text => "search: #{params[:q]} => #{@tags.map(&:name)}", status: :ok}
+			format.html {render :json => @tags, status: :ok}
 			format.js {render :json => @tags, status: :ok}
 		end
 	end
