@@ -16,20 +16,28 @@ class BookmarksController < ApplicationController
 		authorize Bookmark
 		@bookmark = Bookmark.new
 		@tags = []
+
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def create
 		authorize Bookmark
-		bookmark = Bookmark.create(bookmark_params.merge({user: current_user}))
-		unless bookmark.blank?
+
+		bookmark = Bookmark.create(bookmark_params.merge({user: current_user})) if bookmark_params["url"].present?
+		if bookmark.present?
 			new_tags = params[:bookmark][:tags].split(',').collect do |item|
 				Tag.find_or_create_by(name: item)
 			end
 			bookmark.tags << new_tags
 			bookmark.save
+			redirect_to bookmark, notice: 'Bookmark was successfully created.'
+		else
+			redirect_to :back, notice: 'Bookmark creation failed.'
 		end
 
-		redirect_to bookmark, notice: 'Bookmark was successfully created.'
 	end
 
 	def show
