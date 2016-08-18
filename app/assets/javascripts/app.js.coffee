@@ -1,2 +1,2 @@
 $ ->
-	BRAIN.Bookmarks.initInlineForm('.js-inline-bookmark-form-link','')
+	BRAIN.Bookmarks.initInlineForm('.js-inline-bookmark-form-link')
