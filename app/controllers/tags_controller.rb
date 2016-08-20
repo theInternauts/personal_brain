@@ -40,9 +40,6 @@ class TagsController < ApplicationController
 	end
 
 	def search
-	end
-
-	def search
 		# lock it down for now
 		authorize Tag
 		# should move this functionality to run directly from the web server ahead of Rails (metal)
