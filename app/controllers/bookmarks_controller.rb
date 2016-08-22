@@ -26,18 +26,24 @@ class BookmarksController < ApplicationController
 	def create
 		authorize Bookmark
 
-		bookmark = Bookmark.create(bookmark_params.merge({user: current_user})) if bookmark_params["url"].present?
-		if bookmark.present?
-			new_tags = params[:bookmark][:tags].split(',').collect do |item|
-				Tag.find_or_create_by(name: item)
+		b_p = bookmark_params
+		tags = b_p.delete(:tags)
+
+		if b_p["url"].present?
+			bookmark = Bookmark.create(b_p.merge({user: current_user}))
+			if bookmark.present?
+				new_tags = tags.split(',').collect do |item|
+					Tag.find_or_create_by(name: item.strip.downcase)
+				end
+				bookmark.tags << new_tags
+				bookmark.save
+				redirect_to bookmark, notice: 'Bookmark was successfully created.'
+			else
+				redirect_to :back, notice: 'Bookmark creation failed.'
 			end
-			bookmark.tags << new_tags
-			bookmark.save
-			redirect_to bookmark, notice: 'Bookmark was successfully created.'
 		else
 			redirect_to :back, notice: 'Bookmark creation failed.'
 		end
-
 	end
 
 	def show
@@ -55,7 +61,16 @@ class BookmarksController < ApplicationController
 	def update
 		bookmark = Bookmark.find(params[:id])
 		authorize bookmark
-		Bookmark.update(bookmark, bookmark_params.merge({user: current_user}))
+
+		b_p = bookmark_params
+		tags = b_p.delete(:tags)
+
+		bookmark.update(b_p.merge({user: current_user}))
+		new_tags = tags.split(',').collect do |item|
+			Tag.find_or_create_by(name: item.strip.downcase)
+		end
+		bookmark.tags = new_tags
+
 		redirect_to bookmark_path(bookmark)
 	end
 
@@ -73,6 +88,6 @@ class BookmarksController < ApplicationController
 
 	private
 		def bookmark_params
-			params.require(:bookmark).permit(:url, :title, :private, :tags)
+			params.require(:bookmark).permit(:url, :title, :private, :tags, :comment)
 		end
 end
