@@ -4,8 +4,8 @@ javascript:
 	});
 
 =form_tag(multi_search_path, method: "get", remote: :true, class: "search-form js-search-form") do
-	=label_tag(:q, "Search: ")
-	=text_field_tag(:q, '', {id: :query_field, placeholder: 'enter keywords', class: 'js-search-input js-multi-search-input'})
+	/ =label_tag(:q, "Search: ")
+	=text_field_tag(:q, '', {id: :query_field, placeholder: 'search', class: 'search-input js-search-input js-multi-search-input'})
 	.js-multi-search-listing
 	= field_set_tag('Options', class: 'radio-set') do
 		b Search for:

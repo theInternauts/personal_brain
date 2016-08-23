@@ -7,17 +7,19 @@ html
 	  =csrf_meta_tags
 
 	body
-		- if signed_in?
-			=render partial: '/layouts/main_nav'
-		- else
-			nav
-				ul
-					li =link_to 'home', root_path
-					li =link_to 'Sign in', sign_in_path
+		.wrapper
+			- if signed_in?
+				=render partial: '/layouts/main_nav'
+			- else
+				.container
+					nav
+						ul.main-nav
+							li =link_to 'home', root_path
+							li =link_to 'Sign in', sign_in_path
 
-
-		#flash
-		  - flash.each do |key, value|
-		    div class="flash #{key}" =value
-		article
-			=yield
+			.container
+				#flash
+				  - flash.each do |key, value|
+				    div class="flash #{key}" =value
+				article
+					=yield
