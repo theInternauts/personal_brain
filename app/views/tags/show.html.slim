@@ -1,0 +1,11 @@
+h1 ="Tag: #{@tag.name}"
+hr
+- if @tag.bookmarks.length > 0
+	ol
+		- @tag.bookmarks.each do |b|
+			li
+				b =link_to "Bookmark: #{b.title}", bookmark_path(b)
+				| &mdash;
+				=link_to b.url, b.url, target: :new
+- else
+	p This tag hasn't been used for anything yet.

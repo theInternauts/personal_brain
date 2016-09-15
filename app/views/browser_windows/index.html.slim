@@ -1,0 +1,21 @@
+h1 Window List
+span ="total: #{@browser_windows.length}"
+=" | ["
+=link_to "create new window", new_device_browser_window_path(device_id: params[:device_id])
+="]"
+- unless @browser_windows.blank?
+	ol
+		- @browser_windows.sort.each do |d|
+			li
+				span private?
+				=check_box_tag(:private)
+				=link_to device_browser_window_path(d.device_id, d) do
+					span id:
+					em ="(#{d.id})"
+					- tabs = d.browser_tabs
+					- unless tabs.blank?
+						ol
+							- tabs.sort.each do |tab|
+								li
+									span ="(#{tab.id})"
+									span =tab.title

@@ -1,0 +1,36 @@
+h1 Add new browser_window
+=form_for @browser_window, url: {action: "create"}, params: {url: 'http://www.google.com', title: 'Google, Yo!'} do |f|
+	=f.label :private
+	=f.check_box :private
+	=f.submit
+
+hr
+h2 browser_window List
+- unless @browser_windows.blank?
+	ol
+		- @browser_windows.each do |bw|
+			li
+				div data-device-id="#{bw[0].id}" ="Device: #{bw[0].name}"
+				- unless bw[1].empty?
+					ol
+						- bw[1].each do |win|
+							li
+								span private?
+								=check_box_tag('private', win.private, win.private)
+								=" - "
+								=link_to device_browser_window_path(win.device_id, win), data: {'browser-window-id': win.id} do
+									span ="window id: "
+									em ="(#{win.id})"
+									span &mdash; tabs:
+								- unless win.browser_tabs.blank?
+									div
+										| &mdash; tabs
+										em =" (#{win.browser_tabs.count}) "
+										| &mdash;
+
+									ol
+										- win.browser_tabs.each do |tab|
+											li
+												span tab id:
+												em =" 	(#{tab.id}) - "
+												span =tab.title

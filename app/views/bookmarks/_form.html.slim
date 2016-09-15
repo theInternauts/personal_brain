@@ -1,0 +1,19 @@
+- if @bookmark.errors.any?
+  #error_explanation
+    h2 ="#{pluralize(@bookmark.errors.count, "error")} prohibited this bookmark from being saved:"
+    ul
+      - @bookmark.errors.full_messages.each do |message|
+        li =message
+
+= form_for @bookmark do |f|
+	= f.label :title
+	= f.text_field :title
+	= f.label :url
+	= f.text_field :url
+	= f.label :tags
+	= f.text_field :tags, value: @tags.sort.map(&:name)*","
+	= f.label :private
+	= f.check_box :private
+	= f.label :comment
+	= f.text_area :comment
+	= f.submit

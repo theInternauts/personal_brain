@@ -1,0 +1,12 @@
+h1 Add new device
+= render 'form'
+
+hr
+h2 Existing Devices
+- unless @devices.blank?
+	ol
+		- @devices.each do |d|
+			li
+				=link_to d, data: {'device-id': d.id} do
+					span =d.name
+					em =" (#{d.browser_windows.count})"

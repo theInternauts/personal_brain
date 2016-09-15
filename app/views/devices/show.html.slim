@@ -1,0 +1,16 @@
+h1 ="Device: #{@device.name}"
+=link_to '[Edit]', edit_device_path(@device)
+=" | "
+=link_to '[New Window]', new_device_browser_window_path(@device)
+hr
+h2 ="#{@device.name} Windows:"
+
+- windows = @device.browser_windows
+- unless windows.blank?
+	ol
+		- windows.sort.each do |bw|
+			li
+				= link_to device_browser_window_path(@device, bw.id), data: {'browser-window-id': bw.id} do
+					em ="(#{bw.browser_tabs.count})"
+					| &mdash;
+					span =bw.private?

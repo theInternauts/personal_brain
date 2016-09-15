@@ -1,0 +1,9 @@
+h1 Bookmarks
+= paginate @bookmarks
+ul
+	- @bookmarks.each_with_index do |bm, index|
+		li
+			span =page_counter(@page, @per_page, index, 5)
+			= render partial: 'bookmark_tile', locals: {bm: bm}
+
+= paginate @bookmarks

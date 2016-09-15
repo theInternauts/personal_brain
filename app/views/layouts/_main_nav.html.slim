@@ -1,0 +1,14 @@
+.container
+	nav
+		div ="Signed in as: #{current_user.try(:email)} - #{current_user.full_name} (#{current_user.username})"
+		div =button_to 'Sign out', sign_out_path, method: :delete
+
+		ul.main-nav
+			li =link_to 'home', root_path
+			li =link_to 'devices', devices_path
+			li =link_to 'bookmarks', bookmarks_path
+			li =link_to 'tags', tags_path
+			li =link_to 'search', search_index_path
+
+	.inline-bookmark-form-container.js-inline-bookmark-form-container
+		a.js-inline-bookmark-form-link ="[+] Add Bookmark"

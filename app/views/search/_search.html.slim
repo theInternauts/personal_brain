@@ -1,0 +1,6 @@
+- if results.empty?
+	h3 No results found
+- else
+	ol
+		- results.each do |r|
+			li =render partial: "#{model_name}/search_result_tile", locals: {result: r}

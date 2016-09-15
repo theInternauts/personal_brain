@@ -1,0 +1,6 @@
+h2 Tab Show
+=link_to "[edit]", edit_device_browser_window_browser_tab_path(@browser_tab.device, @browser_tab.browser_window, @browser_tab)
+hr
+h3 =@browser_tab.title
+p =link_to @browser_tab.url, @browser_tab.url
+p ="Private: #{@browser_tab.private}"

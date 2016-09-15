@@ -1,0 +1,24 @@
+h1 Edit browser_tab
+=form_for @browser_tab, url: {action: "update"}, method: 'PUT' do |f|
+	=f.label :title
+	=f.text_field :title
+	=f.label :url
+	=f.text_field :url
+	=f.label :private
+	=f.check_box :private
+	=f.submit
+
+hr
+h2 browser_tab List
+- unless @browser_tabs.blank?
+	ol
+		- @browser_tabs.sort.each do |bt|
+			li
+				div
+					span private?
+					=check_box_tag(:private, bt.private, bt.private)
+					| &mdash;
+					span =bt.title
+					| &mdash;
+					= link_to device_browser_window_browser_tab_path(params[:device_id], params[:browser_window_id], bt) do
+						= bt.url

@@ -1,0 +1,18 @@
+javascript:
+	$(function(){
+		BRAIN.Search.init('.js-search-form');
+	});
+
+=form_tag(multi_search_path, method: "get", remote: :true, class: "search-form js-search-form") do
+	/ =label_tag(:q, "Search: ")
+	=text_field_tag(:q, '', {id: :query_field, placeholder: 'search', class: 'search-input js-search-input js-multi-search-input'})
+	.js-multi-search-listing
+	= field_set_tag('Options', class: 'radio-set') do
+		b Search for:
+		=radio_button_tag(:type, "bookmarks", true)
+		=label_tag(:type_bookmarks, "bookmarks")
+		=radio_button_tag(:type, "tags")
+		=label_tag(:type_tags, "tags")
+	=submit_tag("Search")
+
+.js-search-results-container
