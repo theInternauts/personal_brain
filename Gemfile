@@ -28,6 +28,7 @@ gem 'clearance'
 gem 'pundit'
 # gem "administrate", "~> 0.2.2"
 gem 'friendly_id'
+gem 'rails_12factor'
 
 group :development, :test do
 	gem "rspec-rails", '~> 2.13.2'
