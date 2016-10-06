@@ -32,7 +32,8 @@ class BookmarksController < ApplicationController
 		if b_p["url"].present?
 			bookmark = Bookmark.create(b_p.merge({user: current_user}))
 			if bookmark.present?
-				new_tags = tags.split(',').uniq.collect do |item|
+				tag_candidates = tags.split(',').uniq.keep_if {|x| x.present? }
+				new_tags = tag_candidates.collect do |item|
 					Tag.find_or_create_by(name: item.strip.downcase)
 				end
 				bookmark.tags << new_tags

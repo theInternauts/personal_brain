@@ -22,7 +22,8 @@ namespace :bookmarks do
 
 			document.bookmarks.each do |b|
 				puts b
-				new_tags = b.tags.split(',').uniq.collect do |item|
+				tag_candidates = b.tags.split(',').uniq.keep_if {|x| x.present? }
+				new_tags = tag_candidates.collect do |item|
 					Tag.find_or_create_by(name: item.strip.downcase)
 				end
 
