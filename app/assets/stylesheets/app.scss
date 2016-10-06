@@ -26,8 +26,13 @@
   padding: 10px 15px;
   text-align: center;
   background-color: #cdf;
+  border: 4px solid #cdf;
   margin: 10px 0;
   display: block;
+}
+.js-inline-bookmark-form-link:hover {
+	background-color: #f0f8ff;
+	border: 4px solid #cdf;
 }
 .search-form .search-input {
   width: 100%;
