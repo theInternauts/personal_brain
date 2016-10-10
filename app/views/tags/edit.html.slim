@@ -1,2 +1,4 @@
 h1 Edit tag
 = render 'form'
+hr
+	=button_to "delete", tag_path(@tag), method: :delete

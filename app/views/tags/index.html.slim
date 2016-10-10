@@ -9,7 +9,5 @@ ul
 			=link_to t.name, tag_path(t)
 			| &mdash;&mdash;&mdash;
 			=link_to '[edit]', edit_tag_path(t)
-			| &mdash;
-			=link_to "[X]", tag_path(t), method: :delete
 
 = paginate @tags
