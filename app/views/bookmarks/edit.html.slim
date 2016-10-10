@@ -1,2 +1,4 @@
 h1 Edit bookmark
 = render 'form'
+hr
+	=button_to 'delete', bookmark_path(@bookmark), method: :delete

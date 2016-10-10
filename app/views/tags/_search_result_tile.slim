@@ -1,5 +1,7 @@
 .search-result-tile
 	div
 		=link_to result.name, result
-		| &mdash;
+		=raw("&mdash;")
+		=link_to '[edit]', edit_tag_path(result)
+		=raw("&mdash;")
 		span ="found in #{result.bookmarks.length} bookmarks"
