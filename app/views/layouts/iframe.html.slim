@@ -1,0 +1,42 @@
+doctype html
+html
+	head
+	  title PersonalBrain Uploader
+	  / =stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+	  / =javascript_include_tag 'application', 'data-turbolinks-track' => true
+	  =csrf_meta_tags
+	  css:
+	  	body,
+	  	html {
+				height: 100%;
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				border: 0;
+	  	}
+	  	body {
+				background-color: rgba(0,0,0,0.5);
+				position: absolute;
+		    top: 0;
+		    left: 0;
+	  	}
+	  	.container {
+		  	max-width: 2880px;
+		  	margin:0 auto;
+	  	}
+	  	.panel {
+				width: 500px;
+				height: 500px;
+				margin: 20px auto;
+				background-color: #fff;
+				text-align: center;
+			}
+
+
+	body
+		.container
+			#flash
+			  - flash.each do |key, value|
+			    div class="flash #{key}" =value
+			article
+				=yield
