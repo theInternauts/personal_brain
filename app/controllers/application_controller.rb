@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
 	  flash[:warning] = "You are not authorized to perform this action."
 	  redirect_to(request.referrer || root_path)
 	end
+
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
+    puts "------------ allow_iframe -------------------"
+  end
 end

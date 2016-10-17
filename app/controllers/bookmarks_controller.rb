@@ -1,4 +1,6 @@
 class BookmarksController < ApplicationController
+	after_action :allow_iframe, only: :save
+
 	def index
 		authorize Bookmark
 
@@ -92,8 +94,23 @@ class BookmarksController < ApplicationController
 		redirect_to bookmarks_path
 	end
 
+	def save
+		if signed_out?
+			puts "--- out ---"
+			redirect_to "iframe#new", layout: false
+		else
+			@bookmark = params.to_json
+			render :save, layout: 'iframe'
+		end
+	end
+
 	private
 		def bookmark_params
 			params.require(:bookmark).permit(:url, :title, :private, :tags, :comment)
 		end
+
+	  def allow_iframe
+	    response.headers.except! 'X-Frame-Options'
+	    puts "----------- bookmark - allow_iframe -------------------"
+	  end
 end

@@ -18,7 +18,8 @@ gem 'json'
 gem 'slim'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'rack'
+gem 'rack-cors', :require => 'rack/cors'
 gem 'unicorn'
 gem 'sanitize'
 gem 'ember-rails'

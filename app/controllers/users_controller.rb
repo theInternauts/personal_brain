@@ -1,4 +1,6 @@
 class UsersController < Clearance::UsersController
+  after_action :allow_iframe, only: :create
+
 	def new
     @user = user_from_params
     render template: "users/new"
