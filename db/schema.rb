@@ -13,28 +13,25 @@
 
 ActiveRecord::Schema.define(version: 20161008075555) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "bookmarks", force: :cascade do |t|
-    t.text     "url"
-    t.text     "title"
-    t.boolean  "private",    default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.text     "comment"
-    t.integer  "user_id"
+    t.text     "url",        limit: 65535
+    t.text     "title",      limit: 65535
+    t.boolean  "private",    limit: 1,     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "comment",    limit: 65535
+    t.integer  "user_id",    limit: 4
   end
 
-  add_index "bookmarks", ["title"], name: "index_bookmarks_on_title", using: :btree
-  add_index "bookmarks", ["url"], name: "index_bookmarks_on_url", using: :btree
+  add_index "bookmarks", ["title"], name: "index_bookmarks_on_title", length: {"title"=>256}, using: :btree
+  add_index "bookmarks", ["url"], name: "index_bookmarks_on_url", length: {"url"=>256}, using: :btree
   add_index "bookmarks", ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
 
   create_table "bookmarks_tags", id: false, force: :cascade do |t|
-    t.integer  "bookmark_id", null: false
-    t.integer  "tag_id",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "bookmark_id", limit: 4, null: false
+    t.integer  "tag_id",      limit: 4, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "bookmarks_tags", ["bookmark_id"], name: "index_bookmarks_tags_on_bookmark_id", using: :btree
@@ -43,19 +40,19 @@ ActiveRecord::Schema.define(version: 20161008075555) do
   create_table "browser_tabs", force: :cascade do |t|
     t.string   "url",               limit: 255
     t.string   "title",             limit: 255
-    t.boolean  "private",                       default: false
+    t.boolean  "private",           limit: 1,   default: false
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
-    t.integer  "browser_window_id"
+    t.integer  "browser_window_id", limit: 4
   end
 
   add_index "browser_tabs", ["browser_window_id"], name: "index_browser_tabs_on_browser_window_id", using: :btree
 
   create_table "browser_windows", force: :cascade do |t|
-    t.boolean  "private",    default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "device_id"
+    t.boolean  "private",    limit: 1, default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "device_id",  limit: 4
   end
 
   add_index "browser_windows", ["device_id"], name: "index_browser_windows_on_device_id", using: :btree
@@ -64,16 +61,16 @@ ActiveRecord::Schema.define(version: 20161008075555) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "name",       limit: 255
-    t.integer  "user_id"
+    t.integer  "user_id",    limit: 4
   end
 
   add_index "devices", ["user_id"], name: "index_devices_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",   limit: 4,   null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+    t.string   "scope",          limit: 255
     t.datetime "created_at"
   end
 
@@ -84,9 +81,9 @@ ActiveRecord::Schema.define(version: 20161008075555) do
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug",       limit: 255
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
@@ -95,13 +92,13 @@ ActiveRecord::Schema.define(version: 20161008075555) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.string   "email",                          null: false
+    t.string   "email",              limit: 255, null: false
     t.string   "encrypted_password", limit: 128, null: false
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128, null: false
-    t.string   "full_name"
-    t.string   "username"
-    t.string   "slug"
+    t.string   "full_name",          limit: 255
+    t.string   "username",           limit: 255
+    t.string   "slug",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
