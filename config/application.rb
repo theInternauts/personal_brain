@@ -23,12 +23,14 @@ module PersonalBrain
     # config.action_dispatch.default_headers['X-Frame-Options'] = "ALLOW-FROM http://localhost.com:3000/"
     # config.action_dispatch.except! 'X-Frame-Options'
     # config.action_dispatch.delete('X-Frame-Options')
-    config.middleware.insert_before 0, "Rack::Cors" do
-      allow do
-        origins 'localhost.com:3000, localhost.com'
-        resource '*', :headers => :any, :methods => [:save, :create, :new]
-      end
-    end
+
+    # config.middleware.insert_before 0, "Rack::Cors" do
+    #   allow do
+    #     origins 'localhost.com:3000, localhost.com'
+    #     resource '*', :headers => :any, :methods => [:save, :create, :new]
+    #   end
+    # end
+
 
   end
 end

@@ -1,4 +1,4 @@
-class CreateTagsJoinTable < ActiveRecord::Migration
+class CreateTagsJoinTable < ActiveRecord::Migration[4.2]
   def change
   	drop_table :taggings
 

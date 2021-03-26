@@ -1,4 +1,4 @@
-class CreateBrowserTab < ActiveRecord::Migration
+class CreateBrowserTab < ActiveRecord::Migration[4.2]
   def change
     create_table :browser_tabs do |t|
     	t.string :url

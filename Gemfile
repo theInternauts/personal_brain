@@ -34,10 +34,10 @@ gem 'friendly_id'
 gem 'rails_12factor'
 
 group :development, :test do
-	gem "rspec-rails", '~> 2.13.2'
-  gem 'fabrication', '2.11.3'
-  gem 'json_spec', '~> 1.0.3'
-  gem 'irake'
+	gem 'rspec-rails', '~> 3.6'
+  gem 'fabrication'
+  gem 'json_spec'
+  gem 'rake'
   gem 'ruby-prof'
   gem 'pry'
   gem 'pry-rails'
@@ -61,7 +61,7 @@ group :test do
   gem "ffaker"
   gem "timecop", :require => false
   gem 'fakeweb', :require => false
-  gem 'spork', '1.0.0rc4'
+  gem 'spork'
   gem 'database_cleaner', :require => false
   gem "rspec-instafail", :require => false
   gem "webmock"
@@ -71,5 +71,5 @@ end
 
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
-	gem 'sdoc', '~> 0.4.0'
+	gem 'sdoc'
 end
