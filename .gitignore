@@ -19,6 +19,8 @@
 /*.sublime-project
 /*.sublime-workspace
 
+.byebug_history
+.env
 .DS_Store
 .ruby-version
 /NOTES*.txt
